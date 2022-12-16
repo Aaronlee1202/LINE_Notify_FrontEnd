@@ -95,10 +95,15 @@
 </template>
 
 <script>
+import { ref } from "vue";
 export default {
   name: "HelloWorld",
+  setup() {
+    const text = ref("Hello");
+    return { text };
+  },
   props: {
-    msg: String,
+    msg: { type: String },
   },
 };
 </script>
