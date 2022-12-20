@@ -1,6 +1,8 @@
 <template>
   <div id="LINE">
     <h1>{{ title }}</h1>
+    <input type="text" v-model="tag" />
+    <button @click="generateQRcodeFn()">確定</button>
     <div>
       <canvas id="canvas"></canvas>
     </div>
@@ -18,32 +20,21 @@ import QRCode from "qrcode";
 
 export default {
   name: "LINE Notify",
-  mounted() {
-    var canvas = document.getElementById("canvas");
-    QRCode.toCanvas(
-      canvas,
-      "https://d45f-118-163-94-193.ngrok.io/v1/login/line_notify",
-      function (error) {
-        if (error) console.error(error);
-        console.log("QRCode success!");
-      }
-    );
-  },
   setup() {
     //reactive 只能是物件 or 陣列
     // const test = reactive();
+    var oauth_URL = ref("https://3c48-118-163-94-193.ngrok.io");
+    const API_url = ref("http://localhost:8000");
     const title = ref("LINE Notify");
-    const emitText = ref("[FrontEnd] 充電樁異常!!!");
+    const emitText = ref("B1-A15 充電樁溫度過高!");
     let apiStatus = ref();
-    const url = ref("http://localhost:8000");
-
-    // var canvas = document.getElementById("canvas");
+    let tag = ref("");
 
     const emitNotifyFn = async () => {
       apiStatus.value = "Loading ...";
       try {
         const status = await axios.get(
-          `${url.value}/v1/emitNotify?text=${emitText.value}`
+          `${API_url.value}/v1/emitNotify?text=${emitText.value}`
         );
         console.log("status", status);
         apiStatus.value = status.data;
@@ -52,6 +43,20 @@ export default {
         apiStatus.value = "Error" + e;
       }
     };
+
+    const generateQRcodeFn = () => {
+      var canvas = document.getElementById("canvas");
+      QRCode.toCanvas(
+        canvas,
+        `${oauth_URL.value}/v1/login/line_notify?tag=${tag.value}`,
+        function (error) {
+          if (error) console.error(error);
+          console.log("QRCode success!");
+        }
+      );
+    };
+
+    // onMounted(() => );
     const route = useRoute();
     watch(
       () => route.params.id,
@@ -60,20 +65,13 @@ export default {
       }
     );
 
-    // onMounted(() => {
-    //   QRCode.toCanvas(
-    //     canvas,
-    //     "https://d45f-118-163-94-193.ngrok.io/v1/login/line_notify",
-    //     function (error) {
-    //       if (error) console.error(error);
-    //       console.log("QRCode success!");
-    //     }
-    //   );
-    // });
-
-    return { title, emitText, apiStatus, emitNotifyFn };
+    return { title, emitText, apiStatus, tag, emitNotifyFn, generateQRcodeFn };
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#LINE {
+  position: relative;
+}
+</style>
