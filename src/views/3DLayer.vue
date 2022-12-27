@@ -5,20 +5,32 @@
       :class="[layerSwitch1 == 1 ? 'layer-stack__layer_hover' : '']"
       @click="clickLayer(1)"
     >
+      <div class="icon">
+        <img src="../assets/Vector.svg" alt="" v-show="layerSwitch1 == 1" />
+      </div>
       <h2>B3</h2>
     </div>
+    <!-- :class="[layerSwitch1 == 2 ? 'layer-stack__layer_hover' : '']" -->
     <div
       class="layer-stack__layer layer-stack__layer2"
       :class="[layerSwitch1 == 2 ? 'layer-stack__layer_hover' : '']"
       @click="clickLayer(2)"
     >
+      <div class="icon">
+        <img src="../assets/Vector.svg" alt="" v-show="layerSwitch1 == 2" />
+      </div>
       <h2>B2</h2>
     </div>
+    <!-- :class="[layerSwitch1 == 3 ? 'layer-stack__layer_hover' : '']" -->
     <div
       class="layer-stack__layer layer-stack__layer3"
       :class="[layerSwitch1 == 3 ? 'layer-stack__layer_hover' : '']"
       @click="clickLayer(3)"
     >
+      <!-- <div class="B1_img"></div> -->
+      <div class="icon">
+        <img src="../assets/Vector.svg" alt="" v-show="layerSwitch1 == 3" />
+      </div>
       <h2>B1</h2>
     </div>
   </div>
@@ -72,44 +84,62 @@ body {
   text-align: start;
   display: flex;
   align-items: flex-end;
+  cursor: pointer;
+  user-select: none;
 }
 
 .layer-stack__layer1 {
   background: #e1e2e8; //224687
+}
+.layer-stack__layer1:hover {
+  box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.15);
+  transition: (all 0.15s);
 }
 
 .layer-stack__layer2 {
   transform: rotateX(50deg) rotateZ(30deg) translateZ(100px);
   background: #ebedf0; //2abfd4
 }
+.layer-stack__layer2:hover {
+  box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.15);
+  transition: (all 0.15s);
+}
 
 .layer-stack__layer3 {
   transform: rotateX(50deg) rotateZ(30deg) translateZ(200px);
   background: #f8f8f9;
 }
+.layer-stack__layer3:hover {
+  box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.15);
+  transition: (all 0.15s);
+}
 
 .layer-stack__layer_hover {
-  transform: translateY(-70px) rotateX(0deg) rotateZ(0deg) translateZ(100px)
-    scale(1.7);
-  z-index: 9;
+  // transform: translateY(-70px) rotateX(0deg) rotateZ(0deg) translateZ(100px)
+  //   scale(1.7);
+  // z-index: 9;
 }
 
 h2 {
-  margin: 0 0 20px 40px;
+  margin: 0 0 15px 5px;
   font-weight: 700;
-  transform: rotateX(0deg) rotateZ(0deg);
+  display: flex;
+  text-align: center;
+  align-items: flex-start;
+}
+.icon {
+  width: 30px;
+  height: 50px;
+  text-align: right;
 }
 
-// .layer-stack__wrap:hover .layer-stack__layer:nth-child(3) {
-//   transform: translate(120px, -120px);
-//   opacity: 0.8;
-// }
-// .layer-stack__wrap:hover .layer-stack__layer:nth-child(2) {
-//   transform: translate(80px, -80px);
-//   opacity: 0.6;
-// }
-// .layer-stack__wrap:hover .layer-stack__layer:nth-child(1) {
-//   transform: translate(40px, -40px);
-//   opacity: 0.4;
-// }
+.B1_img {
+  width: 100px;
+  height: 100px;
+  margin: 0 0 0px 40px;
+  transform: rotateX(0deg) rotateZ(-13deg);
+  background-image: url("../assets/B1.png");
+  object-fit: cover;
+  background-repeat: no-repeat;
+}
 </style>

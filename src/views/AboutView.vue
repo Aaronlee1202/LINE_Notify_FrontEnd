@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
     <div class="row">
       <div class="col">
-        <input type="text" v-model="tag" />
+        <input type="text" v-model="tag" placeholder="請輸入編號" />
       </div>
       <div class="row g-0 gy-2">
         <div class="col">
@@ -50,7 +50,6 @@ export default {
   name: "LINE Notify",
   setup() {
     //reactive 只能是物件 or 陣列
-    // const test = reactive();
     var oauth_URL = ref("https://3c48-118-163-94-193.ngrok.io");
     const API_url = ref("http://localhost:8000");
     const title = ref("LINE Notify");
@@ -111,5 +110,8 @@ h2 {
   border-top: 1px solid rgba(0, 0, 0, 0.255);
   margin-top: 25px;
   padding-top: 15px;
+}
+
+input:placeholder-shown {
 }
 </style>
