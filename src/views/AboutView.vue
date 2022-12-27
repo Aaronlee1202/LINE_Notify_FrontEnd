@@ -1,14 +1,42 @@
 <template>
-  <div id="LINE">
+  <div id="LINE" class="container">
     <h1>{{ title }}</h1>
-    <input type="text" v-model="tag" />
-    <button @click="generateQRcodeFn()">確定</button>
-    <div>
-      <canvas id="canvas"></canvas>
+    <div class="row">
+      <div class="col">
+        <input type="text" v-model="tag" />
+      </div>
+      <div class="row g-0 gy-2">
+        <div class="col">
+          <button
+            type="button"
+            class="btn btn-outline-info"
+            @click="generateQRcodeFn()"
+          >
+            確定
+          </button>
+        </div>
+      </div>
+      <div>
+        <canvas id="canvas"></canvas>
+      </div>
+      <div class="row g-0">
+        <div class="col">
+          <input type="text" v-model="emitText" />
+        </div>
+      </div>
+      <div class="row g-0 gy-2">
+        <div class="col">
+          <button
+            type="button"
+            class="btn btn-outline-info"
+            @click="emitNotifyFn()"
+          >
+            傳送通知
+          </button>
+        </div>
+      </div>
+      <h2>{{ apiStatus }}</h2>
     </div>
-    <input type="text" v-model="emitText" />
-    <button @click="emitNotifyFn()">傳送通知</button>
-    <h2>{{ apiStatus }}</h2>
   </div>
 </template>
 
@@ -40,7 +68,7 @@ export default {
         apiStatus.value = status.data;
       } catch (e) {
         console.log(e);
-        apiStatus.value = "Error" + e;
+        apiStatus.value = e;
       }
     };
 
@@ -73,5 +101,15 @@ export default {
 <style scoped>
 #LINE {
   position: relative;
+}
+h1 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.255);
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+h2 {
+  border-top: 1px solid rgba(0, 0, 0, 0.255);
+  margin-top: 25px;
+  padding-top: 15px;
 }
 </style>
