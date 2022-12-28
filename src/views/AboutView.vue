@@ -1,19 +1,20 @@
 <template>
-  <div id="LINE" class="container">
+  <div id="LINE" class="container text-center">
     <h1>{{ title }}</h1>
     <div class="row">
       <div class="col">
         <input type="text" v-model="tag" placeholder="請輸入編號" />
       </div>
-      <div class="row g-0 gy-2">
-        <div class="col">
-          <button
+      <div class="row g-0 gy-2 justify-content-center">
+        <div class="col-3">
+          <!-- <button
             type="button"
-            class="btn btn-outline-info"
+            class="btn1 btn-black hover-filled-opacity"
             @click="generateQRcodeFn()"
           >
-            確定
-          </button>
+            <span>確定</span>
+          </button> -->
+          <h3 class="hover" @click="generateQRcodeFn()">Click Me</h3>
         </div>
       </div>
       <div>
@@ -110,6 +111,96 @@ h2 {
   border-top: 1px solid rgba(0, 0, 0, 0.255);
   margin-top: 25px;
   padding-top: 15px;
+}
+/* 測試效果 */
+h3 {
+  /* font-family: system-ui, sans-serif; */
+  border: 1px solid #42b98363;
+  font-size: 28px;
+  margin: 0;
+  cursor: pointer;
+  padding: 0.2em;
+}
+.hover {
+  --b: 0.1em; /* the thickness of the line */
+  --c: #42b983; /* the color */
+
+  color: #0000;
+  padding-block: var(--b);
+  background: linear-gradient(var(--c) 50%, #000 0) 0%
+      calc(100% - var(--_p, 0%)) / 100% 200%,
+    linear-gradient(var(--c) 0 0) 0% var(--_p, 0%) / var(--_p, 0%) var(--b)
+      no-repeat;
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  transition: 0.3s var(--_s, 0s) linear,
+    background-size 0.3s calc(0.3s - var(--_s, 0s));
+}
+.hover:hover {
+  --_p: 100%;
+  --_s: 0.3s;
+  border: 1px solid #0000;
+}
+
+:active,
+:hover,
+:focus {
+  outline: 0 !important;
+  outline-offset: 0;
+}
+::before,
+::after {
+  position: absolute;
+  content: "";
+}
+.btn1 {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0px 25px 15px;
+  min-width: 150px;
+}
+.btn1 span {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 20px;
+  transition: 0.3s;
+}
+.btn-black::before {
+  background-color: rgb(28, 31, 30);
+  transition: 0.3s ease-out;
+}
+.btn-black span {
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(28, 31, 30);
+  transition: 0.2s 0.1s;
+}
+.btn-black span:hover {
+  color: rgb(28, 31, 30);
+  transition: 0.2s 0.1s;
+}
+/* 5. hover-filled-opacity */
+.btn1.hover-filled-opacity::before {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+}
+.btn1.hover-filled-opacity:hover::before {
+  opacity: 0;
 }
 
 input:placeholder-shown {
