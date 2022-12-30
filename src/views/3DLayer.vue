@@ -3,16 +3,21 @@
     <div class="row">
       <parkingLayer />
     </div>
-    <input type="text" v-model="num" />
-    <div class="progress vertical">
-      <div
-        class="progress-bar bg-success"
-        role="progressbar"
-        :style="'width:' + progressNum + '%'"
-        :aria-valuenow="progressNum"
-        aria-valuemin="0"
-        aria-valuemax="100"
-      ></div>
+    <div class="row">
+      <div class="col">
+        <input type="text" v-model="num" />
+        <div class="progress vertical">
+          <div
+            class="progress-bar bg-success"
+            role="progressbar"
+            :style="'width:' + progressNum + '%'"
+            aria-valuenow="90"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <div>width:{{ progressNum }}%</div>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +29,7 @@ export default {
   name: "3D Layer",
   components: { parkingLayer },
   setup() {
-    let num = ref(0);
+    let num = ref(10);
     const progressNum = computed(() => {
       return `${num.value}`;
     });
